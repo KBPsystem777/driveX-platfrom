@@ -1,13 +1,6 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Shield,
@@ -22,8 +15,9 @@ import {
   ArrowRight,
   UserCheck,
 } from "lucide-react";
+
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+
 import { Navbar } from "@/components/navbar";
 
 export default function HomePage() {
@@ -37,7 +31,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 bg-blue-100 text-blue-800 hover:bg-blue-100">
-              🚀 Now in Beta • Powered by Blockchain
+              🚀 Now in pre-Beta • Powered by Blockchain
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               The Smarter Way to Hire{" "}
@@ -190,7 +184,7 @@ export default function HomePage() {
       </section>
 
       {/* For Businesses Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white" id="businesses">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -306,10 +300,15 @@ export default function HomePage() {
                     only available for a limited time. Pricing may vary soon.
                   </p>
                 </div>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                  <ArrowRight className="mr-2 h-5 w-5" />
-                  Join the Founders Club (₱1,200)
-                </Button>
+                <Link
+                  href={`https://polar.sh/checkout/${process.env.NEXT_PUBLIC_POLAR_ACCESS_TOKEN}`}
+                  className="w-full"
+                >
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                    <ArrowRight className="mr-2 h-5 w-5" />
+                    Join the Founders Club (₱1,100)
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -390,7 +389,19 @@ export default function HomePage() {
             <p className="text-xl text-gray-600 mb-12">
               No freemium. No bloat. Just affordable access.
             </p>
-
+            <div className="bg-yellow-50 rounded-lg p-6 border border-yellow-200 mb-12">
+              <p className="text-yellow-800">
+                <strong>📣 Limited Time Offer:</strong> Become an early backer
+                by joining the{" "}
+                <Link
+                  href={"#businesses"}
+                  className="text-blue-600 hover:underline *:hover:text-blue-800"
+                >
+                  DriveX Founders Club
+                </Link>{" "}
+                for a one-time payment of ₱1,200 and unlock lifetime benefits.
+              </p>
+            </div>
             <div className="grid md:grid-cols-2 gap-8 mb-12">
               {/* Individuals Plan */}
               <Card className="relative border-2 hover:border-blue-200 transition-colors">
@@ -425,8 +436,8 @@ export default function HomePage() {
                       <span>Mobile app access</span>
                     </li>
                   </ul>
-                  <Button className="w-full mt-9" variant="outline">
-                    Choose Individual Plan
+                  <Button className="w-full mt-9" variant="outline" disabled>
+                    Choose Individual Plan (Coming Soon)
                   </Button>
                 </CardContent>
               </Card>
@@ -468,8 +479,8 @@ export default function HomePage() {
                       <span>Analytics dashboard</span>
                     </li>
                   </ul>
-                  <Button className="w-full" variant="outline">
-                    Choose Business Plan
+                  <Button className="w-full" variant="outline" disabled>
+                    Choose Business Plan (Coming Soon)
                   </Button>
                 </CardContent>
               </Card>
@@ -498,21 +509,23 @@ export default function HomePage() {
               network. Be part of the future.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
+              {/* <Button
                 size="lg"
                 className="text-lg px-8 py-6 bg-white text-blue-600 hover:bg-gray-100"
               >
                 <Users className="mr-2 h-5 w-5" />
                 Join Waitlist
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="text-lg px-8 py-6 border-2 border-white text-white hover:bg-white hover:text-blue-600"
-              >
-                <Car className="mr-2 h-5 w-5" />
-                Register as a Driver
-              </Button>
+              </Button> */}
+              <Link href="/driver/register" className="w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="bg-blue-700 text-lg px-8 py-6 border-2 border-white text-white hover:bg-white hover:text-blue-600"
+                >
+                  <Car className="mr-2 h-5 w-5" />
+                  Register as a Driver
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
